@@ -3,7 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require("cors");
-const userIpDetailsRoutes = require("./api-routes/user-ip-details-routes");
+const userIpDetailsRoutes = require("./api-routes/routes/user-ip-details-routes");
 
 // Intialise the express instance 
 const app = express();
@@ -11,8 +11,8 @@ const app = express();
 /// ADDING THE MIDDLE WARES
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use("/" , userIpDetailsRoutes)
+app.use("/api" , userIpDetailsRoutes);
 
 app.listen(4000 , (req , res)=>{
     console.log("Server started at port 4000 ");    
-})
+});
