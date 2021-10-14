@@ -22,7 +22,7 @@ const connetToMongoDB = async ()=>{
         });              
     }
     catch(e){
-        console.log("ERROR WHILE CONNECTING TO MONGODB : ", e );
+        console.log("ERROR WHILE CONNECTING TO MONGODB ..: ", e );
     }
 } 
  
