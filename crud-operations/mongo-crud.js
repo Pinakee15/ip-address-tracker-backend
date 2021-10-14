@@ -13,7 +13,7 @@ const insertOneData = (dbName , collectionName , data)=>{
 // POST AS WELL AS UPDAT(THE IP DETAILS ARRAY)
 const updateOneDocument = (dbName , collectionName ,data , id)=>{
 
-    client.db(dbName).collection(collectionName).updateOne(
+    return client.db(dbName).collection(collectionName).updateOne(
         {_id : id},
         {$push : {"data" : data}},
         {upsert : true}

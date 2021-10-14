@@ -14,13 +14,19 @@ router.get( USER_IPDETAILS, (req,res)=>{
 
 router.post(USER_IPDETAILS , (req,res)=>{
 
-    let data = {ip , country , region , city , timezone , isp , coordinates , _id} = req.body;
+    let data = {ip , country , region , city , timezone , isp , coordinates } = req.body;
+    let _id = req.body._id;
     console.log("request from server : ", data);
-    // let object = {
-    //     _id : 
-    // }
 
-    //crudOperations.updateOneDocument("user-ip-infos" ,"ip-infos" ,data , id);
+    crudOperations.updateOneDocument("user-ip-infos" ,"ip-infos" ,data , _id).then(result=>{
+        if(result){
+            console.log("success posting data to mongodb");
+            res.send("success posting data to mongodb").status(200);
+        }
+    }).catch(err=>{
+        res.send("There was some error in saving the data to database");
+        console.log("There was some error in saving the data to database");
+    })
 
     //crudOperations.findIpDetail("user-ip-infos" ,"ip-infos" , id)
 
