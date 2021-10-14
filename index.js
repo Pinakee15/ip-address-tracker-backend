@@ -40,7 +40,7 @@ app.use("/api" , userIpDetailsRoutes);
 //Checking 
 
 app.get("/" , (req, res)=>{
-    res.send("Welcome to home page ...")
+    res.send("Welcome to home page visit https://ip-address-tracker-pinakee.herokuapp.com/app ...")
 })
 
 app.listen(process.env.PORT ||  4000 , (req , res)=>{
