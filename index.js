@@ -19,22 +19,13 @@ const connetToMongoDB = async ()=>{
         await client.connect();    
         client.once('open' , ()=>{
             console.log("DATA BASE CONNECTED : "); 
-        });
-        await listDataBases(client);                
+        });              
     }
     catch(e){
         console.log("ERROR WHILE CONNECTING TO MONGODB : ", e );
     }
 } 
  
-const listDataBases = async (client)=>{
-    const databasesList =  await client.db().admin().listDatabases()
-    console.log("DATABASES LISTS : ")
-    databasesList.databases.forEach(db=>{
-        console.log("- db" , db.name);
-    })
-}
-
 connetToMongoDB().catch(console.log);
 
 
@@ -47,6 +38,6 @@ app.use("/api" , userIpDetailsRoutes);
 
 // LISTEN TO THE REQUESTS
 
-app.listen(4000 , (req , res)=>{
+app.listen(process.env.PORT ||  4000 , (req , res)=>{
     console.log("Server started at port 4000 ");    
 });

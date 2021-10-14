@@ -1,44 +1,35 @@
 // import the dependencies
 const express = require('express');
 const { crudOperations } = require('../../crud-operations/mongo-crud');
-const IpSchema = require('../../models/user-ip-details.model');
 const router = express.Router();
 const { USER_IPDETAILS } = require('../API_ROUTES_CONTANTS');
 
 /// ROUTES
 
-router.get( USER_IPDETAILS, (req,res)=>{
-    console.log("This is the home page request ..");
-    res.send("HOME ..").status(200);
+router.get(USER_IPDETAILS, (req,res)=>{
+    let userId = req.params.id;
+    crudOperations.findIpDetail("user-ip-infos" ,"ip-infos", userId).then(result=>{
+        if(result){
+            res.json(result).status(200);
+        }
+    }).catch(err=>{
+        res.send({err})
+    })
+
 });
 
 router.post(USER_IPDETAILS , (req,res)=>{
 
     let data = {ip , country , region , city , timezone , isp , coordinates } = req.body;
     let _id = req.body._id;
-    console.log("request from server : ", data);
 
     crudOperations.updateOneDocument("user-ip-infos" ,"ip-infos" ,data , _id).then(result=>{
         if(result){
-            console.log("success posting data to mongodb");
             res.send("success posting data to mongodb").status(200);
         }
     }).catch(err=>{
-        res.send("There was some error in saving the data to database");
-        console.log("There was some error in saving the data to database");
+        res.send({message : err});
     })
-
-    //crudOperations.findIpDetail("user-ip-infos" ,"ip-infos" , id)
-
-    // crudOperations.insertOneData("user-ip-infos" ,"ip-infos" ,data)
-    //     .then(result=>{            
-    //         console.log("INSERTED DATA SUCCESSFULLY INTO DATABASE", result);
-    //         res.send("success").status(200);
-    //     }).catch(err=>{
-    //         console.log("error while inserting : ", err);
-    //         res.send({message : "something went wrong while insering data"})
-    //     })
-
 })
 
 
