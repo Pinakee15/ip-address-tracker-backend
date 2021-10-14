@@ -1,3 +1,3 @@
 module.exports = {
-    USER_IPDETAILS : "/user/ipdetails/:id"
+    USER_IPDETAILS : "/user/ipdetails"
 }

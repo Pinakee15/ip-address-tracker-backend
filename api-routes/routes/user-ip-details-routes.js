@@ -6,10 +6,9 @@ const { USER_IPDETAILS } = require('../API_ROUTES_CONTANTS');
 
 /// ROUTES
 
-router.get(USER_IPDETAILS, (req,res)=>{
+router.get(USER_IPDETAILS + "/:id", (req,res)=>{
     let userId = req.params.id;
     crudOperations.findIpDetail("user-ip-infos" ,"ip-infos", userId).then(result=>{
-        console.log("hit this funciton with user id : ", userId , result);
         if(result){
             res.json(result).status(200);
         }
