@@ -37,12 +37,6 @@ app.use("/api" , userIpDetailsRoutes);
 
 // LISTEN TO THE REQUESTS
 
-//Checking 
-
-app.get("/" , (req, res)=>{
-    res.send("Welcome to home page visit https://ip-address-tracker-pinakee.herokuapp.com/app ...")
-})
-
 app.listen(process.env.PORT ||  4000 , (req , res)=>{
     console.log("Server started at port 4000 ");    
 });

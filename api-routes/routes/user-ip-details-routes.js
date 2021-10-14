@@ -35,7 +35,14 @@ router.post(USER_IPDETAILS , (req,res)=>{
     }).catch(err=>{
         res.send({message : err}).status(500)
     })
+});
+
+/// ============ ONLY A TEST ROUTE TO CHECK IF SERVER IS UP ==============
+
+router.get("/" , (req, res)=>{
+    res.send("Welcome to home page visit https://ip-address-tracker-pinakee.herokuapp.com/app ...")
 })
+
 
 
 module.exports =  router;
